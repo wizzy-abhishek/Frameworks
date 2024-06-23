@@ -1,0 +1,5 @@
+package com.practice.ManyToMany.pojo;
+
+public class Laptop {
+
+}

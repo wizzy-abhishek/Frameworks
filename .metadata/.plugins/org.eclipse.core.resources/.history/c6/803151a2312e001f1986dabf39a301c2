@@ -1,0 +1,38 @@
+package com.practice.Hibernate_2;
+
+
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import com.practice.Hibernate_2.entity.Hibernate;
+
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+        Hibernate hib = new Hibernate();
+       
+        Configuration con = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Hibernate.class);
+        
+        SessionFactory sf = con.buildSessionFactory();
+        
+        Session s = sf.openSession();
+        hib.setId(5);
+        hib.setName("Abcd");
+        hib.setColor("Blue");
+        
+        
+        s.beginTransaction();
+        
+        s.save(hib);
+        
+        s.getTransaction().commit();
+        
+        
+        
+        
+    }
+}

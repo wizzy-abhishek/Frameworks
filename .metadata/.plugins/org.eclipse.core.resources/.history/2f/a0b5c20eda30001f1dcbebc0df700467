@@ -1,0 +1,5 @@
+package com.practice.HQL.POJO;
+
+public class Student {
+
+}

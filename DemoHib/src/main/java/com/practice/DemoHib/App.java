@@ -1,0 +1,44 @@
+package com.practice.DemoHib;
+
+import org.hibernate.Session;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+
+
+public class App 
+{
+  
+	public static void main( String[] args )
+    {
+        //Alien abs = null ;
+		AlienName an = new AlienName();
+		
+		an.setFirst_name("Abhishek");
+		an.setMid_name("Kumar");
+		an.setLast_name("Anand");
+		
+		Alien abs = new Alien();
+		 abs.setId(6); abs.setColor("Brown"); abs.setName(an);
+		 
+        
+        Configuration config = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Alien.class) ;
+        
+        StandardServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
+        
+        
+        SessionFactory sf = config.buildSessionFactory(registry);
+        
+        Session session = sf.openSession();
+        Transaction tx = session.beginTransaction();
+        
+        session.persist(abs);
+        abs = session.get(Alien.class, 6);
+        tx.commit();
+        System.out.println(abs);
+        
+    }
+}

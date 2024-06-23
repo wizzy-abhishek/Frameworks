@@ -1,0 +1,49 @@
+package com.practice.Mapping_HIb;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+
+import com.practice.Mapping_HIb.pojo.Laptop;
+import com.practice.Mapping_HIb.pojo.Student;
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	
+    	Student student = new Student();
+        student.setRoll(84);
+        student.setName("Gargi Parmar");
+        student.setBranch("CSE");
+          
+        Laptop laptop = new Laptop();
+        laptop.setlId(101);
+        laptop.setlName("ASUS");
+        laptop.setStudent(student);
+        
+        Laptop laptop1 = new Laptop();
+        laptop1.setlId(102);
+        laptop1.setlName("Mac");
+        laptop1.setStudent(student);
+        
+        student.getLaptop().add(laptop);
+        student.getLaptop().add(laptop1);
+        
+        
+        Configuration config = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Laptop.class).addAnnotatedClass(Student.class) ;
+        StandardServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
+        SessionFactory sf = config.buildSessionFactory(reg);
+        Session session = sf.openSession();
+        Transaction tx = session.beginTransaction();
+        
+        session.persist(laptop1);
+        session.persist(student);
+        session.persist(laptop);
+        
+        tx.commit();
+    }
+}

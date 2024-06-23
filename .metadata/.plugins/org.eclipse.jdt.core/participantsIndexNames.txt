@@ -1,0 +1,7 @@
+INDEX VERSION 1.134
+P:\Eclipse Projects\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\908238938.index
+\HiobernateSetting\src\main\java
+P:\Eclipse Projects\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\796611237.index
+\Hibernate\src\main\resources
+P:\Eclipse Projects\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2673602139.index
+\HiobernateSetting\src\main\resources
